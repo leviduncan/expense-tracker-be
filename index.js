@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 })
 
 const transactionRouter = require('./routes/api/transactionRoutes')
-app.use('./api', transactionRouter)
+app.use('/api', transactionRouter)
 
 connectDB().then(() => {
     app.listen(port, () => {
