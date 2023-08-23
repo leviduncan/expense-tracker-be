@@ -19,11 +19,9 @@ app.get("/", (req, res) => {
 const transactionRouter = require('./routes/api/transactionRoutes')
 app.use('./api', transactionRouter)
 
-connectDB(err => {
-    if(err){console.error(err)
-    return false
-    }
+connectDB().then(() => {
     app.listen(port, () => {
         console.log(`Server is running on Port: ${port}`)
     })
 })
+
