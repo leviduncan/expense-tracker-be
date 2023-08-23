@@ -10,7 +10,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(express.json())
 
-connectDB()
+// connectDB()
 
 app.get("/", (req, res) => {
     res.send('Woo, hoo! We are good to go!')
@@ -19,6 +19,11 @@ app.get("/", (req, res) => {
 const transactionRouter = require('./routes/api/transactionRoutes')
 app.use('./api', transactionRouter)
 
-app.listen(port, () => {
-    console.log(`Server is running on Port: ${port}`)
+connectDB(err => {
+    if(err){console.error(err)
+    return false
+    }
+    app.listen(port, () => {
+        console.log(`Server is running on Port: ${port}`)
+    })
 })
